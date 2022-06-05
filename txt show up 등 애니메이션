@@ -1,0 +1,260 @@
+[CSS]
+.brand_story.days100 .txt_show.move,
+.brand_story.days100 .txt_show .move01,
+.brand_story.days100 .txt_show .move02,
+.brand_story.days100 .txt_show .move03,
+.brand_story.days100 .txt_show .move04,
+.brand_story.days100 .txt_show .move05,
+.brand_story.days100 .txt_show .move06{opacity:0}
+.brand_story.days100 .txt_show.active.move{opacity:1;transition:opacity .4s}
+.brand_story.days100 .txt_show.active .move01{opacity:1;transition:opacity .4s}
+.brand_story.days100 .txt_show.active .move02{opacity:1;transition:opacity .4s;transition-delay:.2s !important}
+.brand_story.days100 .txt_show.active .move03{opacity:1;transition:opacity .4s;transition-delay:.4s !important}
+.brand_story.days100 .txt_show.active .move04{opacity:1;transition:opacity .4s;transition-delay:.6s !important}
+.brand_story.days100 .txt_show.active .move05{opacity:1;transition:opacity .4s;transition-delay:.8s !important}
+.brand_story.days100 .txt_show.active .move06{opacity:1;transition:opacity .4s;transition-delay:1s !important}
+.brand_story.days100 .txt_show.up.move,
+.brand_story.days100 .txt_show.up .move01,
+.brand_story.days100 .txt_show.up .move02,
+.brand_story.days100 .txt_show.up .move03,
+.brand_story.days100 .txt_show.up .move04,
+.brand_story.days100 .txt_show.up .move05,
+.brand_story.days100 .txt_show.up .move06{transform:translateY(20px)}
+.brand_story.days100 .txt_show.up.active.move,
+.brand_story.days100 .txt_show.up.active .move01,
+.brand_story.days100 .txt_show.up.active .move02,
+.brand_story.days100 .txt_show.up.active .move03,
+.brand_story.days100 .txt_show.up.active .move04,
+.brand_story.days100 .txt_show.up.active .move05,
+.brand_story.days100 .txt_show.up.active .move06{transform:translateY(0);transition:opacity .4s, transform .4s}
+.brand_story.days100 .txt_show.left .move01,
+.brand_story.days100 .txt_show.left .move02,
+.brand_story.days100 .txt_show.left .move03,
+.brand_story.days100 .txt_show.left .move04{transform:translateX(-20px)}
+.brand_story.days100 .txt_show.left.active .move01,
+.brand_story.days100 .txt_show.left.active .move02,
+.brand_story.days100 .txt_show.left.active .move03,
+.brand_story.days100 .txt_show.left.active .move04{transform:translateX(0);transition:opacity .4s, transform .4s}
+.brand_story.days100 .txt_show.flip .move01,
+.brand_story.days100 .txt_show.flip .move02,
+.brand_story.days100 .txt_show.flip .move03,
+.brand_story.days100 .txt_show.flip .move04,
+.brand_story.days100 .txt_show.flip .move05,
+.brand_story.days100 .txt_show.flip .move06{transform:rotateY(90deg);transform-style:preserve-3d}
+.brand_story.days100 .txt_show.flip.active .move01,
+.brand_story.days100 .txt_show.flip.active .move02,
+.brand_story.days100 .txt_show.flip.active .move03,
+.brand_story.days100 .txt_show.flip.active .move04,
+.brand_story.days100 .txt_show.flip.active .move05,
+.brand_story.days100 .txt_show.flip.active .move06{transform:rotateY(0);transition:opacity .4s, transform .4s}
+
+@keyframes circleRoundDot{
+    0%{transform:rotate(0deg) translate(-150px) rotate(0deg)}
+    100%{transform:rotate(360deg) translate(-150px) rotate(-360deg)}
+}
+@keyframes txtBlink01{
+    0%{opacity:1;transform:scale(1) skew(0deg, 0deg) rotate(0deg)}
+    50%{opacity:0.4;transform:scale(1.05) skew(-1deg, -1deg) rotate(-2deg)}
+    75%{opacity:0.6;transform:scale(1.05) skew(1deg, 1deg) rotate(2deg)}
+    100%{opacity:1;transform:scale(1) skew(0deg, 0deg) rotate(0deg)}
+}
+@keyframes txtBlink02{
+    0%{opacity:1}
+    50%{opacity:0.5}
+    100%{opacity:1}
+}
+@keyframes txtBlink03{
+    0%{opacity:1;transform:scale(1) rotateY(0deg)}
+    50%{opacity:0.6;transform:scale(.87) rotateY(35deg)}
+    100%{opacity:1;transform:scale(1) rotateY(0deg)}
+}
+@keyframes txtBlink04{
+    0%{opacity:1;transform:scale(1) rotateX(0deg)}
+    50%{opacity:0.4;transform:scale(1.1) rotateX(25deg)}
+    100%{opacity:1;transform:scale(1) rotateX(0deg)}
+}
+keyframes사용 예시
+.brand_story.days100 .guide.diary .area.circle ul > li .tag .circle{display:block;position:absolute;top:0;right:0;bottom:0;left:0;width:20px;height:20px;margin:auto;border-radius:50%;animation:circleRoundDot 6s linear infinite}
+
+
+[마크업]
+<div class="txt_area txt_show up">
+  <p class="txt move01">평생교육디자이너는 교육을 통해</p><br>
+  <p class="txt move02"><em>한 가정의 꿈과 미래를 디자인 하는 <span class="pc">전문가입니다.</span></em></p>
+  <p class="txt mo move03"><em>전문가입니다.</em></p>
+</div>
+
+[JS]
+
+$(function(){
+            brandAnimation01();
+            
+            // 스크롤 애니메이션 
+            $('.tab.md > li').each(function(){
+                $(this).find('a').one('click',function() {
+                    var idx = $(this).parent('li').index(),
+                        cont = $('.tab_cont').children('.cont');
+                    if(idx == 0 && cont.eq(0).hasClass('active')){
+                        activeDel();
+                        brandAnimation01();
+                    }else if(idx == 1 && cont.eq(1).hasClass('active')){
+                        activeDel();
+                        brandAnimation02();
+                    }else if(idx == 2 && cont.eq(2).hasClass('active')){
+                        activeDel();
+                        brandAnimation03();
+                    }else if(idx == 3 && cont.eq(3).hasClass('active')){
+                        activeDel();
+                        brandAnimation04();
+                    }else{
+                        return;
+                    }
+                })
+                
+                //탭 클릭시 반응형 슬라이더 
+                $(this).find('a').on('click',function() {
+                    var idx = $(this).parent('li').index(),
+                        cont = $('.tab_cont').children('.cont');
+                    if(idx == 1 && cont.eq(1).hasClass('active')){
+                        slick_on_mobile(reviewSlider, settings_slider);
+                        slick_on_mobile(stepSlider01, settings_slider);
+                    }else if(idx == 2 && cont.eq(2).hasClass('active')){
+                        slick_on_mobile(imgSlider, settings_slider);
+                        slick_on_mobile(stepSlider02, settings_slider);
+                    }else if(idx == 3 && cont.eq(3).hasClass('active')){
+                        slick_on_mobile(stepSlider03, settings_slider);
+                    }else{
+                        return;
+                    }
+                })
+            })
+            
+})
+
+        function activeDel(){
+            var contShow = $('.brand_story.days100 .txt_show'),
+                contGraph = $('.brand_story.days100 .guide.reading .area.bar_graph');
+            contShow.removeClass('active');
+            contGraph.removeClass('active');
+        }
+        function brandAnimation01(){
+            $(window).on('load resize scroll',function(){
+                var header = $('#gnb').outerHeight();
+                var sct = $(window).scrollTop() + header,
+                    winH = ($(window).height() - header) / 2;
+
+                //100일 독서란?
+                var mainTxt = $('.brand_story.days100 .main_guide > .top .info_area > .txt_area'),
+                    mainTop = $('.brand_story.days100 .main_guide > .top .info_area').offset().top;
+                var preUser = $('.brand_story.days100 .main_guide > .detail_info_area .sec .contents .pre_user'),
+                    offTopUser00 = preUser.eq(0).offset().top,
+                    offTopUser01 = preUser.eq(1).offset().top,
+                    offTopUser02 = preUser.eq(2).offset().top;
+                var power = $('.brand_story.days100 .main_guide > .detail_info_area .sec .power_area dd'),
+                    offTopPower = power.offset().top;
+
+                $('.brand_story.days100 .main_guide > .top .tit_area').addClass('active');
+                if(sct > mainTop - winH){
+                    mainTxt.addClass('active');
+                }
+                if(sct > offTopUser00 - winH){
+                    preUser.eq(0).addClass('active');
+                }
+                if(sct > offTopUser01 - winH){
+                    preUser.eq(1).addClass('active');
+                }
+                if(sct > offTopUser02 - winH){
+                    preUser.eq(2).addClass('active');
+                }
+                if(sct > offTopPower - winH){
+                    power.addClass('active');
+                }
+            })
+        }
+        function brandAnimation02() {
+            $(window).on('load resize scroll', function () {
+                var header = $('#gnb').outerHeight();
+                var sct = $(window).scrollTop() + header,
+                    winH = ($(window).height() - header) / 2;
+
+                //독서성장일기
+                var char01 = $('.brand_story.days100 .guide.diary .area.char .cont_area');
+                var guide = $('.brand_story.days100 .guide.diary .area.guide'),
+                    guideTop = guide.offset().top;
+                var review = $('.brand_story.days100 .guide.diary .area.change .cont_area'),
+                    reviewTop = review.offset().top;
+                var end = $('.brand_story.days100 .guide.diary .end'),
+                    endTop = end.offset().top;
+
+                if (sct > header) {
+                    char01.addClass('active');
+                }
+                if (sct > reviewTop - winH) {
+                    review.find('.txt_show').addClass('active');
+                }
+                if (sct > guideTop - winH) {
+                    guide.find('.txt_show').addClass('active');
+                }
+                if (sct > endTop - winH - 200) {
+                    end.addClass('active');
+                }
+            })
+        }
+        function brandAnimation03() {
+            $(window).on('load resize scroll', function () {
+                var header = $('#gnb').outerHeight();
+                var sct = $(window).scrollTop() + header,
+                    winH = ($(window).height() - header) / 2;
+
+                //독전/독후활동
+                var char02 = $('.brand_story.days100 .guide.reading .area.char .cont_area');
+                var graph = $('.brand_story.days100 .guide.reading .area.bar_graph'),
+                    graphTop = graph.offset().top;
+                var guide = $('.brand_story.days100 .guide.reading .area.guide'),
+                    guideTop = guide.offset().top;
+                var end = $('.brand_story.days100 .guide.reading .end'),
+                    endTop = end.offset().top;
+
+                if (sct > header) {
+                    char02.addClass('active');
+                }
+                if (sct > graphTop - winH) {
+                    graph.addClass('active');
+                }
+                if (sct > guideTop - winH) {
+                    guide.find('.txt_show').addClass('active');
+                }
+                if (sct > endTop - winH - 200) {
+                    end.addClass('active');
+                }
+            })
+        }
+        function brandAnimation04(){
+            $(window).on('load resize scroll',function(){
+                var header = $('#gnb').outerHeight();
+                var sct = $(window).scrollTop() + header,
+                    winH = ($(window).height() - header) / 2;
+
+                //그물독서활동
+                var char03 = $('.brand_story.days100 .guide.chain .area.char .cont_area');
+                var circle = $('.brand_story.days100 .guide.chain .area.circle'),
+                    circleTop = circle.offset().top;
+                var guide =  $('.brand_story.days100 .guide.chain .area.guide'),
+                    guideTop = guide.offset().top;
+                var end = $('.brand_story.days100 .guide.chain .end'),
+                    endTop = end.offset().top;
+
+                if(sct > header){
+                    char03.addClass('active');
+                }
+                if(sct > circleTop - winH){
+                    circle.find('.txt_show').addClass('active');
+                }
+                if(sct > guideTop - winH){
+                    guide.find('.txt_show').addClass('active');
+                }
+                if (sct > endTop - winH - 200) {
+                    end.addClass('active');
+                }
+            })
+        }
